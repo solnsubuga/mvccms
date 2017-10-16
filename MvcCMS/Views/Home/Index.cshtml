@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MvcCMS.Models.Post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.IsIndex = true;
+}
+
+<h2>Index</h2>
+@foreach(var post in Model)
+{
+    @Html.Partial("_renderPost",post)
+  
+}
+
+@if (ViewBag.PreviousPage > 0)
+{
+    <ul class="pager">
+        <li>
+            @Html.ActionLink("&larr Previous Page", "page", new { controller = "home", page = ViewBag.PreviousPage })
+        </li>
+    </ul>
+    
+}
+
+&nbsp;
+
+@if (ViewBag.NextPage > -1)
+{
+    <ul class="pager">
+        <li>
+           @Html.ActionLink("Next Page  &rarr", "page", new { controller = "home", page = ViewBag.NextPage })
+        </li>
+    </ul>   
+}

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MvcCMS.Models.CmsUser>
+@{
+    ViewBag.Title = "Member";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header no-margin">
+    <h1 class="text-center">
+        Users
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                   
+                    <a href="@Url.Action("create","user")" class="btn btn-primary pull-right" style="color:#fff;margin:5px 10px;" ><i class="fa fa-pencil"></i>Add member</a>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DisplayName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DisplayName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { username = item.UserName },new { @class="btn btn-default"})
+                                        @Html.ActionLink("Delete", "Delete", new { username = item.UserName }, new { data_action = "delete", @class="btn btn-danger", data_value = item.UserName })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section><!-- /.content -->
+
+
+

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MvcCMS.Models.Post>
+
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@AntiForgery.GetHtml()
+
+     <!-- Content Header (Page header) -->
+    <section class="content-header no-margin">
+        <h1 class="text-center">
+            Articles
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section  class="content">
+        <div class="row">
+            <div class=" col-md-12 col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Articles available</h3>
+                        <a href="@Url.Action("create","post")" class="btn btn-primary pull-right" style="color:#fff;margin:5px 10px;"><i class="fa fa-pencil"></i> Compose Article</a>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Created)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Published)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Author)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+@foreach (var item in Model)
+{
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Created)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Published)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Author.DisplayName)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id },new { @class="btn btn-primary" }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { data_action = "delete", data_value = item.Title, @class="btn btn-danger" })
+                                    </td>
+                                </tr>
+}
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+

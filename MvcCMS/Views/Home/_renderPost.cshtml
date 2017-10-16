@@ -1,0 +1,30 @@
+﻿@model MvcCMS.Models.Post
+
+
+@if(!ViewBag.IsIndex)
+{
+  <h2>@Model.Title</h2>
+}
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-preview">
+            <a href="post.html">
+                <h2 class="post-title">
+                   @if (ViewBag.IsIndex)
+                   {
+                    @Html.ActionLink(Model.Title, "post", new { controller = "home", postId = Model.Id })
+                   }
+                </h2>
+                <h3 class="post-subtitle">
+                    @Html.Raw(Model.Content)
+                </h3>
+            </a>
+            <p class="post-meta">Posted by <a href="#">@Model.Author.DisplayName</a> @Model.Published </p>
+            <p class="post-meta">Tags:@Html.Partial("_renderTags", Model.Tags)</p>
+        </div>
+        <hr>
+    </div>
+</div>
+
+

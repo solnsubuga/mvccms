@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+<style>
+.vertical-center{
+    display:flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content:center;
+}
+
+body{
+    padding-bottom: 2rem;
+}
+    </style>
+</head>
+    <body>
+        <div class="container">
+            <div class="row vertical-center">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">@ViewBag.Heading</h2>
+                        </div>
+                        <div class="panel-body">
+                               <div class="">
+                                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                           
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </body>
+
+</html>
